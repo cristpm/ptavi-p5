@@ -164,20 +164,25 @@ El jitter es proporcional al tiempo entre el paquete actual y el anterior
  ** ¿Cuánto dura la conversación?
 20.19
  ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs?
-0xbf4afd37
-0x43306582
+SSRC1: 0xbf4afd37
+SSRC2: 0x43306582
+Hay dos fuentes una para enviar y otro para recibir
 
 15. Identifica la trama donde se finaliza la conversación.
  ** ¿Qué método SIP se utiliza?
  ** ¿En qué trama(s)?
+	Tramas 924,925,927,933
  ** ¿Por qué crees que se envía varias veces?
+Hasta que no se recibe respuesta del servidor se vuelve a enviar
 
 
 16. Finalmente, se cierra la aplicación de VozIP.
  ** ¿Por qué aparece una instrucción SIP del tipo REGISTER?
+Este REGISTER tiene el Expire a 0 por lo cual sirve para eliminar la información del usuario que envio el BYE anteriormente
  ** ¿En qué trama sucede esto?
+Trama 952
  ** ¿En qué se diferencia con la instrucción que se utilizó con anterioridad (al principio de la sesión)?
-
+Expire = 0
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
@@ -200,16 +205,16 @@ Captura una sesión SIP de una conversación con el número SIP sip:music@iptel.
 
 18. Identifica las diferencias existentes entre esta conversación y la conversación anterior:
  ** ¿Cuántos flujos tenemos?
-	Dos flujos
+	Dos flujos, uno de ida y otro de vuelta
  ** ¿Cuál es su periodicidad?
 	Time 160 corresponde a 20ms
  ** ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
-Fujo 212.128.254.150  delta(max)30.695    jitter(max)6.476  jitter(mean)4.236
-Fujo 212.79.111.155  delta(max)77.138    jitter(max)7.067  jitter(mean)1.246
+Fujo 1:  212.128.254.150  delta(max)30.695    jitter(max)6.476  jitter(mean)4.236
+Fujo 2:  212.79.111.155  delta(max)77.138    jitter(max)7.067  jitter(mean)1.246
 		
  ** ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
-	Si
- ** ¿Sabrías decir qué tipo de servicio ofrece sip:9999@qxip.net?
+	Si 
+ ** ¿Sabrías decir qué tipo de servicio ofrece sip:music@iptel.org?
 	Musica en linea
 
 
